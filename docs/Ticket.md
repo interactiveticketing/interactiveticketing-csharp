@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TicketId** | **int?** | The ticket ID | [optional] 
+**OrderId** | **int?** | The ticket order ID | [optional] 
 **Barcode** | **string** | The ticket barcode | [optional] 
 **Canceled** | **bool?** | Canceled / Voided ticket | [optional] 
 **Name** | **string** | Name of ticket | [optional] 
@@ -32,6 +33,7 @@ Name | Type | Description | Notes
 **PromoCode** | **string** | Applicable to promo code discounts | [optional] 
 **PromoName** | **string** | Applicable to promo code discounts | [optional] 
 **PromoDescription** | **string** | Applicable to promo code discounts | [optional] 
+**Department** | [**Department**](Department.md) |  | [optional] 
 **Scans** | [**List&lt;Scan&gt;**](Scan.md) | Array of ticket scan activity | [optional] 
 **ScanPointConfig** | [**ScanPointConfig**](ScanPointConfig.md) |  | [optional] 
 

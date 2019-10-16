@@ -1,21 +1,22 @@
 # InteractiveTicketingSdk.Api.DefaultApi
 
-All URIs are relative to *https://secure.interactiveticketing.com/developers/api/v1*
+All URIs are relative to *https://secure.interactiveticketing.com/developers/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**EventsEventIdGet**](DefaultApi.md#eventseventidget) | **GET** /events/{eventId} | Single Event
-[**EventsEventIdOrdersGet**](DefaultApi.md#eventseventidordersget) | **GET** /events/{eventId}/orders | Search Orders
-[**EventsEventIdOrdersOrderIdGet**](DefaultApi.md#eventseventidordersorderidget) | **GET** /events/{eventId}/orders/{orderId} | Single Order
-[**EventsGet**](DefaultApi.md#eventsget) | **GET** /events | All Events
+[**EventsEventIdGet**](DefaultApi.md#eventseventidget) | **GET** /events/{eventId} | Fetch Event by ID
+[**EventsEventIdOrdersGet**](DefaultApi.md#eventseventidordersget) | **GET** /events/{eventId}/orders | Query Orders
+[**EventsEventIdOrdersOrderIdGet**](DefaultApi.md#eventseventidordersorderidget) | **GET** /events/{eventId}/orders/{orderId} | Fetch Order by ID
+[**EventsGet**](DefaultApi.md#eventsget) | **GET** /events | List All Events
+[**ScanPost**](DefaultApi.md#scanpost) | **POST** /scan | Scan Ticket
 
 <a name="eventseventidget"></a>
 # **EventsEventIdGet**
 > Event EventsEventIdGet (long? eventId)
 
-Single Event
+Fetch Event by ID
 
-Get single event with `eventId`
+Get single event with `eventId`.
 
 ### Example
 ```csharp
@@ -36,7 +37,7 @@ namespace Example
 
             try
             {
-                // Single Event
+                // Fetch Event by ID
                 Event result = apiInstance.EventsEventIdGet(eventId);
                 Debug.WriteLine(result);
             }
@@ -73,7 +74,9 @@ No authorization required
 # **EventsEventIdOrdersGet**
 > PaginatedOrders EventsEventIdOrdersGet (int? eventId, int? fromOrderId = null, int? start = null, int? limit = null, bool? testMode = null, string orderType = null)
 
-Search Orders
+Query Orders
+
+Returns paginated list of orders from the event. The `orderId` is not unique across all events. Use `fromOrderId` parameter to loop through orders if you are pulling down all data.
 
 ### Example
 ```csharp
@@ -99,7 +102,7 @@ namespace Example
 
             try
             {
-                // Search Orders
+                // Query Orders
                 PaginatedOrders result = apiInstance.EventsEventIdOrdersGet(eventId, fromOrderId, start, limit, testMode, orderType);
                 Debug.WriteLine(result);
             }
@@ -141,7 +144,9 @@ No authorization required
 # **EventsEventIdOrdersOrderIdGet**
 > Order EventsEventIdOrdersOrderIdGet (long? eventId, long? orderId)
 
-Single Order
+Fetch Order by ID
+
+Get single order with `eventId` and `orderId`.
 
 ### Example
 ```csharp
@@ -163,7 +168,7 @@ namespace Example
 
             try
             {
-                // Single Order
+                // Fetch Order by ID
                 Order result = apiInstance.EventsEventIdOrdersOrderIdGet(eventId, orderId);
                 Debug.WriteLine(result);
             }
@@ -201,9 +206,9 @@ No authorization required
 # **EventsGet**
 > List<Event> EventsGet ()
 
-All Events
+List All Events
 
-Get list of all events with their `eventId` for your user key
+Get list of all your events with their `eventId`.
 
 ### Example
 ```csharp
@@ -223,7 +228,7 @@ namespace Example
 
             try
             {
-                // All Events
+                // List All Events
                 List&lt;Event&gt; result = apiInstance.EventsGet();
                 Debug.WriteLine(result);
             }
@@ -250,6 +255,66 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+<a name="scanpost"></a>
+# **ScanPost**
+> ScanResponse ScanPost (ScanRequest body)
+
+Scan Ticket
+
+Scan a ticket or third party barcode.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using InteractiveTicketingSdk.Api;
+using InteractiveTicketingSdk.Client;
+using InteractiveTicketingSdk.Model;
+
+namespace Example
+{
+    public class ScanPostExample
+    {
+        public void main()
+        {
+            var apiInstance = new DefaultApi();
+            var body = new ScanRequest(); // ScanRequest | List of user object
+
+            try
+            {
+                // Scan Ticket
+                ScanResponse result = apiInstance.ScanPost(body);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.ScanPost: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**ScanRequest**](ScanRequest.md)| List of user object | 
+
+### Return type
+
+[**ScanResponse**](ScanResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

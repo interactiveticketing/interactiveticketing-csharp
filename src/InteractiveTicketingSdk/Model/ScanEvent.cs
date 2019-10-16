@@ -22,22 +22,31 @@ using SwaggerDateConverter = InteractiveTicketingSdk.Client.SwaggerDateConverter
 namespace InteractiveTicketingSdk.Model
 {
     /// <summary>
-    /// ScanPoint
+    /// ScanEvent
     /// </summary>
     [DataContract]
-        public partial class ScanPoint :  IEquatable<ScanPoint>
+        public partial class ScanEvent :  IEquatable<ScanEvent>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ScanPoint" /> class.
+        /// Initializes a new instance of the <see cref="ScanEvent" /> class.
         /// </summary>
+        /// <param name="eventId">The event ID.</param>
         /// <param name="scanPointId">The Scan Point ID.</param>
-        /// <param name="name">The Scan Point name.</param>
-        public ScanPoint(int? scanPointId = default(int?), string name = default(string))
+        /// <param name="testMode">True indicates testMode, validate testMode tickets.</param>
+        public ScanEvent(int? eventId = default(int?), int? scanPointId = default(int?), bool? testMode = default(bool?))
         {
+            this.EventId = eventId;
             this.ScanPointId = scanPointId;
-            this.Name = name;
+            this.TestMode = testMode;
         }
         
+        /// <summary>
+        /// The event ID
+        /// </summary>
+        /// <value>The event ID</value>
+        [DataMember(Name="eventId", EmitDefaultValue=false)]
+        public int? EventId { get; set; }
+
         /// <summary>
         /// The Scan Point ID
         /// </summary>
@@ -46,11 +55,11 @@ namespace InteractiveTicketingSdk.Model
         public int? ScanPointId { get; set; }
 
         /// <summary>
-        /// The Scan Point name
+        /// True indicates testMode, validate testMode tickets
         /// </summary>
-        /// <value>The Scan Point name</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
+        /// <value>True indicates testMode, validate testMode tickets</value>
+        [DataMember(Name="testMode", EmitDefaultValue=false)]
+        public bool? TestMode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -59,9 +68,10 @@ namespace InteractiveTicketingSdk.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ScanPoint {\n");
+            sb.Append("class ScanEvent {\n");
+            sb.Append("  EventId: ").Append(EventId).Append("\n");
             sb.Append("  ScanPointId: ").Append(ScanPointId).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  TestMode: ").Append(TestMode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -82,29 +92,34 @@ namespace InteractiveTicketingSdk.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ScanPoint);
+            return this.Equals(input as ScanEvent);
         }
 
         /// <summary>
-        /// Returns true if ScanPoint instances are equal
+        /// Returns true if ScanEvent instances are equal
         /// </summary>
-        /// <param name="input">Instance of ScanPoint to be compared</param>
+        /// <param name="input">Instance of ScanEvent to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ScanPoint input)
+        public bool Equals(ScanEvent input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
+                    this.EventId == input.EventId ||
+                    (this.EventId != null &&
+                    this.EventId.Equals(input.EventId))
+                ) && 
+                (
                     this.ScanPointId == input.ScanPointId ||
                     (this.ScanPointId != null &&
                     this.ScanPointId.Equals(input.ScanPointId))
                 ) && 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    this.TestMode == input.TestMode ||
+                    (this.TestMode != null &&
+                    this.TestMode.Equals(input.TestMode))
                 );
         }
 
@@ -117,10 +132,12 @@ namespace InteractiveTicketingSdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.EventId != null)
+                    hashCode = hashCode * 59 + this.EventId.GetHashCode();
                 if (this.ScanPointId != null)
                     hashCode = hashCode * 59 + this.ScanPointId.GetHashCode();
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.TestMode != null)
+                    hashCode = hashCode * 59 + this.TestMode.GetHashCode();
                 return hashCode;
             }
         }

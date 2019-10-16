@@ -22,35 +22,35 @@ using SwaggerDateConverter = InteractiveTicketingSdk.Client.SwaggerDateConverter
 namespace InteractiveTicketingSdk.Model
 {
     /// <summary>
-    /// ScanPoint
+    /// ThirdPartyTicket
     /// </summary>
     [DataContract]
-        public partial class ScanPoint :  IEquatable<ScanPoint>
+        public partial class ThirdPartyTicket :  IEquatable<ThirdPartyTicket>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ScanPoint" /> class.
+        /// Initializes a new instance of the <see cref="ThirdPartyTicket" /> class.
         /// </summary>
-        /// <param name="scanPointId">The Scan Point ID.</param>
-        /// <param name="name">The Scan Point name.</param>
-        public ScanPoint(int? scanPointId = default(int?), string name = default(string))
+        /// <param name="name">Name of ticket.</param>
+        /// <param name="price">Purchase price for the ticket.</param>
+        public ThirdPartyTicket(string name = default(string), string price = default(string))
         {
-            this.ScanPointId = scanPointId;
             this.Name = name;
+            this.Price = price;
         }
         
         /// <summary>
-        /// The Scan Point ID
+        /// Name of ticket
         /// </summary>
-        /// <value>The Scan Point ID</value>
-        [DataMember(Name="scanPointId", EmitDefaultValue=false)]
-        public int? ScanPointId { get; set; }
-
-        /// <summary>
-        /// The Scan Point name
-        /// </summary>
-        /// <value>The Scan Point name</value>
+        /// <value>Name of ticket</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Purchase price for the ticket
+        /// </summary>
+        /// <value>Purchase price for the ticket</value>
+        [DataMember(Name="price", EmitDefaultValue=false)]
+        public string Price { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -59,9 +59,9 @@ namespace InteractiveTicketingSdk.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ScanPoint {\n");
-            sb.Append("  ScanPointId: ").Append(ScanPointId).Append("\n");
+            sb.Append("class ThirdPartyTicket {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Price: ").Append(Price).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -82,29 +82,29 @@ namespace InteractiveTicketingSdk.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ScanPoint);
+            return this.Equals(input as ThirdPartyTicket);
         }
 
         /// <summary>
-        /// Returns true if ScanPoint instances are equal
+        /// Returns true if ThirdPartyTicket instances are equal
         /// </summary>
-        /// <param name="input">Instance of ScanPoint to be compared</param>
+        /// <param name="input">Instance of ThirdPartyTicket to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ScanPoint input)
+        public bool Equals(ThirdPartyTicket input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.ScanPointId == input.ScanPointId ||
-                    (this.ScanPointId != null &&
-                    this.ScanPointId.Equals(input.ScanPointId))
-                ) && 
-                (
                     this.Name == input.Name ||
                     (this.Name != null &&
                     this.Name.Equals(input.Name))
+                ) && 
+                (
+                    this.Price == input.Price ||
+                    (this.Price != null &&
+                    this.Price.Equals(input.Price))
                 );
         }
 
@@ -117,10 +117,10 @@ namespace InteractiveTicketingSdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.ScanPointId != null)
-                    hashCode = hashCode * 59 + this.ScanPointId.GetHashCode();
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.Price != null)
+                    hashCode = hashCode * 59 + this.Price.GetHashCode();
                 return hashCode;
             }
         }
