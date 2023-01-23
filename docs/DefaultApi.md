@@ -1,18 +1,88 @@
 # InteractiveTicketingSdk.Api.DefaultApi
 
-All URIs are relative to *https://secure.interactiveticketing.com/developers/api/v2*
+All URIs are relative to *https://secure.interactiveticketing.com/developers/api/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**EventsEventIdAbandonedShoppingCartsGet**](DefaultApi.md#eventseventidabandonedshoppingcartsget) | **GET** /events/{eventId}/abandonedShoppingCarts | Query Abandoned Shopping Cart Data
 [**EventsEventIdGet**](DefaultApi.md#eventseventidget) | **GET** /events/{eventId} | Fetch Event by ID
+[**EventsEventIdOrdersBarcodeBarcodeGet**](DefaultApi.md#eventseventidordersbarcodebarcodeget) | **GET** /events/{eventId}/orders/barcode/{barcode} | Fetch Order by Barcode
 [**EventsEventIdOrdersGet**](DefaultApi.md#eventseventidordersget) | **GET** /events/{eventId}/orders | Query Orders
 [**EventsEventIdOrdersOrderIdGet**](DefaultApi.md#eventseventidordersorderidget) | **GET** /events/{eventId}/orders/{orderId} | Fetch Order by ID
 [**EventsGet**](DefaultApi.md#eventsget) | **GET** /events | List All Events
 [**ScanPost**](DefaultApi.md#scanpost) | **POST** /scan | Scan Ticket
 
+<a name="eventseventidabandonedshoppingcartsget"></a>
+# **EventsEventIdAbandonedShoppingCartsGet**
+> PaginatedCartEmails EventsEventIdAbandonedShoppingCartsGet (int? eventId, int? fromCartEmailId = null, int? email = null, int? start = null, int? limit = null)
+
+Query Abandoned Shopping Cart Data
+
+Returns paginated list of cart data from the event. The `cartEmailId` is not unique across all events. Use `fromCartEmailId` parameter to loop through orders if you are pulling down all data.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using InteractiveTicketingSdk.Api;
+using InteractiveTicketingSdk.Client;
+using InteractiveTicketingSdk.Model;
+
+namespace Example
+{
+    public class EventsEventIdAbandonedShoppingCartsGetExample
+    {
+        public void main()
+        {
+            var apiInstance = new DefaultApi();
+            var eventId = 56;  // int? | ID of event to return
+            var fromCartEmailId = 56;  // int? | Return entries with `cartEmailId` greater than `fromCartEmailId`. (optional) 
+            var email = 56;  // int? | Return entries with matching email address. (optional) 
+            var start = 56;  // int? | For pagination, return orders from `start` row index. (optional) 
+            var limit = 56;  // int? | For pagination, limit results to `limit` number of rows. (optional) 
+
+            try
+            {
+                // Query Abandoned Shopping Cart Data
+                PaginatedCartEmails result = apiInstance.EventsEventIdAbandonedShoppingCartsGet(eventId, fromCartEmailId, email, start, limit);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.EventsEventIdAbandonedShoppingCartsGet: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **eventId** | **int?**| ID of event to return | 
+ **fromCartEmailId** | **int?**| Return entries with &#x60;cartEmailId&#x60; greater than &#x60;fromCartEmailId&#x60;. | [optional] 
+ **email** | **int?**| Return entries with matching email address. | [optional] 
+ **start** | **int?**| For pagination, return orders from &#x60;start&#x60; row index. | [optional] 
+ **limit** | **int?**| For pagination, limit results to &#x60;limit&#x60; number of rows. | [optional] 
+
+### Return type
+
+[**PaginatedCartEmails**](PaginatedCartEmails.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 <a name="eventseventidget"></a>
 # **EventsEventIdGet**
-> Event EventsEventIdGet (long? eventId)
+> ModelEvent EventsEventIdGet (long? eventId)
 
 Fetch Event by ID
 
@@ -38,7 +108,7 @@ namespace Example
             try
             {
                 // Fetch Event by ID
-                Event result = apiInstance.EventsEventIdGet(eventId);
+                ModelEvent result = apiInstance.EventsEventIdGet(eventId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -58,7 +128,69 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Event**](Event.md)
+[**ModelEvent**](ModelEvent.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+<a name="eventseventidordersbarcodebarcodeget"></a>
+# **EventsEventIdOrdersBarcodeBarcodeGet**
+> Order EventsEventIdOrdersBarcodeBarcodeGet (long? eventId, string barcode)
+
+Fetch Order by Barcode
+
+Get single order with `eventId` and `barcode`.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using InteractiveTicketingSdk.Api;
+using InteractiveTicketingSdk.Client;
+using InteractiveTicketingSdk.Model;
+
+namespace Example
+{
+    public class EventsEventIdOrdersBarcodeBarcodeGetExample
+    {
+        public void main()
+        {
+            var apiInstance = new DefaultApi();
+            var eventId = 789;  // long? | ID of event to return
+            var barcode = barcode_example;  // string | Barcode from ticket of the order to return
+
+            try
+            {
+                // Fetch Order by Barcode
+                Order result = apiInstance.EventsEventIdOrdersBarcodeBarcodeGet(eventId, barcode);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.EventsEventIdOrdersBarcodeBarcodeGet: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **eventId** | **long?**| ID of event to return | 
+ **barcode** | **string**| Barcode from ticket of the order to return | 
+
+### Return type
+
+[**Order**](Order.md)
 
 ### Authorization
 
@@ -204,7 +336,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 <a name="eventsget"></a>
 # **EventsGet**
-> List<Event> EventsGet ()
+> List<ModelEvent> EventsGet ()
 
 List All Events
 
@@ -229,7 +361,7 @@ namespace Example
             try
             {
                 // List All Events
-                List&lt;Event&gt; result = apiInstance.EventsGet();
+                List&lt;ModelEvent&gt; result = apiInstance.EventsGet();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -246,7 +378,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List<Event>**](Event.md)
+[**List<ModelEvent>**](ModelEvent.md)
 
 ### Authorization
 

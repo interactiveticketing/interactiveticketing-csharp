@@ -1,4 +1,4 @@
-# InteractiveTicketingSdk.Model.Client
+# InteractiveTicketingSdk.Model.ModelClient
 ## Properties
 
 Name | Type | Description | Notes

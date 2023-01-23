@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Barcode** | **string** | The barcode for the scan | [optional] 
 **ScanPointId** | **string** | The scanPointId for the scan | [optional] 
 **TestMode** | **bool?** | True if test mode is used | [optional] 
-**Event** | [**Event**](Event.md) |  | [optional] 
+**_Event** | [**ModelEvent**](ModelEvent.md) |  | [optional] 
 **Ticket** | [**Ticket**](Ticket.md) |  | [optional] 
 **OfflineTicket** | [**OfflineTicket**](OfflineTicket.md) |  | [optional] 
 **ThirdPartyTicket** | [**ThirdPartyTicket**](ThirdPartyTicket.md) |  | [optional] 

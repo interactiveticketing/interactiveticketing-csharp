@@ -22,21 +22,21 @@ using SwaggerDateConverter = InteractiveTicketingSdk.Client.SwaggerDateConverter
 namespace InteractiveTicketingSdk.Model
 {
     /// <summary>
-    /// PaginatedOrders
+    /// PaginatedCartEmails
     /// </summary>
     [DataContract]
-        public partial class PaginatedOrders :  IEquatable<PaginatedOrders>
+        public partial class PaginatedCartEmails :  IEquatable<PaginatedCartEmails>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaginatedOrders" /> class.
+        /// Initializes a new instance of the <see cref="PaginatedCartEmails" /> class.
         /// </summary>
-        /// <param name="results">Page of orders.</param>
+        /// <param name="results">Page of cartEmails.</param>
         /// <param name="start">The start index position in query results page.</param>
         /// <param name="limit">The number of items per page.</param>
         /// <param name="limitMax">The maximum number of items per page supported by the endpoint.</param>
         /// <param name="length">The number of items on current page.</param>
         /// <param name="total">The total number of items on all pages.</param>
-        public PaginatedOrders(List<Order> results = default(List<Order>), int? start = default(int?), int? limit = default(int?), int? limitMax = default(int?), int? length = default(int?), int? total = default(int?))
+        public PaginatedCartEmails(List<CartEmail> results = default(List<CartEmail>), int? start = default(int?), int? limit = default(int?), int? limitMax = default(int?), int? length = default(int?), int? total = default(int?))
         {
             this.Results = results;
             this.Start = start;
@@ -47,11 +47,11 @@ namespace InteractiveTicketingSdk.Model
         }
         
         /// <summary>
-        /// Page of orders
+        /// Page of cartEmails
         /// </summary>
-        /// <value>Page of orders</value>
+        /// <value>Page of cartEmails</value>
         [DataMember(Name="results", EmitDefaultValue=false)]
-        public List<Order> Results { get; set; }
+        public List<CartEmail> Results { get; set; }
 
         /// <summary>
         /// The start index position in query results page
@@ -95,7 +95,7 @@ namespace InteractiveTicketingSdk.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PaginatedOrders {\n");
+            sb.Append("class PaginatedCartEmails {\n");
             sb.Append("  Results: ").Append(Results).Append("\n");
             sb.Append("  Start: ").Append(Start).Append("\n");
             sb.Append("  Limit: ").Append(Limit).Append("\n");
@@ -122,15 +122,15 @@ namespace InteractiveTicketingSdk.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PaginatedOrders);
+            return this.Equals(input as PaginatedCartEmails);
         }
 
         /// <summary>
-        /// Returns true if PaginatedOrders instances are equal
+        /// Returns true if PaginatedCartEmails instances are equal
         /// </summary>
-        /// <param name="input">Instance of PaginatedOrders to be compared</param>
+        /// <param name="input">Instance of PaginatedCartEmails to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PaginatedOrders input)
+        public bool Equals(PaginatedCartEmails input)
         {
             if (input == null)
                 return false;
